@@ -8,25 +8,20 @@ unlayer.registerTool({
       title: "COLUMS",
       position: 1,
       options: {
-        column1: {
-          label: "Column 1",
-          defaultValue: "Masquer",
-          widget: "dropdown",
+        qnt: {
+          label: "Quantité",
+          defaultValue: false,
+          widget: "toggle",
         },
-        column2: {
-          label: "Column 2",
-          defaultValue: "Masquer",
-          widget: "dropdown",
+        prixUnitaire: {
+          label: "Prix Unitaire",
+          defaultValue: false,
+          widget: "toggle",
         },
-        column3: {
-          label: "Column 3",
-          defaultValue: "Masquer",
-          widget: "dropdown",
-        },
-        column4: {
-          label: "Column 4",
-          defaultValue: "Masquer",
-          widget: "dropdown",
+        udm: {
+          label: "Unité de mesure",
+          defaultValue: false,
+          widget: "toggle",
         },
       },
     },
@@ -34,86 +29,10 @@ unlayer.registerTool({
   values: {},
   renderer: {
     Viewer: unlayer.createViewer({
-      render(values) {
-        console.log("values", values);
-
-        let textHTML = "";
-        let textHTMLHeader = "";
-        let articles = [
-          {
-            description: "Lorem ipsum dolor sit amet.",
-            qte: 5,
-            udm: "m",
-            puht: 1000,
-            total: () => qte * puht,
-          },
-          {
-            description: "Lorem ipsum dolor sit amet.",
-            qte: 10,
-            udm: "kg",
-            puht: 3000,
-            total: () => qte * puht,
-          },
-        ];
-
-        let articleHeaders = ["description", "qte", "udm", "puht", "total"];
-        if (values.column1 !== "Masquer") {
-          articleHeaders.push("column1");
-        }
-        if (values.column2 !== "Masquer") {
-          articleHeaders.push("column2");
-        }
-        if (values.column3 !== "Masquer") {
-          articleHeaders.push("column3");
-        }
-        if (values.column4 !== "Masquer") {
-          articleHeaders.push("column4");
-        }
-        articleHeaders.forEach((header) => {
-          textHTMLHeader += `<th> ${header} </th>`;
-        });
-        for (let i = 0; i < articles.length; i++) {
-          textHTML += `<tr>
-          <td style="width: 20rem"> ${
-            articles[i].description
-          }  </td>                    
-          <td>  ${articles[i].qte} </td>
-          <td>  ${articles[i].udm} </td>
-          <td>  ${articles[i].puht} </td>
-          <td>  ${articles[i].qte * articles[i].puht} </td>`;
-          if (values.column1 !== "Masquer") {
-            textHTML += `<td>column1</td>`;
-          }
-          if (values.column2 !== "Masquer") {
-            textHTML += `<td>column2</td>`;
-          }
-          if (values.column3 !== "Masquer") {
-            textHTML += `<td>column3</td>`;
-          }
-          if (values.column4 !== "Masquer") {
-            textHTML += `<td>column4</td>`;
-          }
-          textHTML += `</tr>`;
-        }
-
-        return `<div style="width:100%" >
-            <table class="table table-striped  table-responsive">
-                <thead class="thead-inverse" >
-                <tr>
-                 ${textHTMLHeader} 
-                </tr>
-                </thead>
-                <tbody>
-                ${textHTML}
-                </tbody> 
-            </table>
-        </div>`;
-      },
+      render: (values) => registerArticlesTool(values),
     }),
     exporters: {
-      web: function (values) {
-        return ` web `;
-      },
+      web: (values) => registerArticlesTool(values),
     },
     head: {
       css: function (values) {},
@@ -121,3 +40,82 @@ unlayer.registerTool({
     },
   },
 });
+
+function registerArticlesTool(values) {
+  console.log("values", values);
+
+  let textHTML = "";
+  let textHTMLHeader = "";
+  let articles = [
+    {
+      article: "article 1",
+      designation: "Lorem ipsum dolor sit amet.",
+      qte: 5,
+      udm: "m",
+      puht: 1000,
+      tva: 20,
+      remise: "0",
+      ht: 1200,
+    },
+    {
+      article: "article 2",
+      designation: "Lorem ipsum dolor sit amet.",
+      qte: 10,
+      udm: "kg",
+      puht: 3000,
+      tva: 20,
+      remise: "0",
+      ht: 3600,
+    },
+  ];
+
+  let articleHeaders = ["ARTICLE", "DESIGNATION"];
+  if (values.qnt) {
+    articleHeaders.push("QTE");
+  }
+  if (values.prixUnitaire) {
+    articleHeaders.push("UDM");
+  }
+  if (values.udm) {
+    articleHeaders.push("PU HT");
+  }
+  articleHeaders = [...articleHeaders, ...["TVA", "REM %", "HT"]];
+
+  articleHeaders.forEach((header) => {
+    textHTMLHeader += `<th> ${header} </th>`;
+  });
+  for (let i = 0; i < articles.length; i++) {
+    textHTML += `
+    <tr>
+          <td style="width: 20rem"> ${articles[i].article}  </td>                    
+          <td>  ${articles[i].designation} </td> `;
+    if (values.qnt) {
+      textHTML += `<td>${articles[i].qte} </td>`;
+    }
+    if (values.udm) {
+      textHTML += `<td>${articles[i].udm}</td>`;
+    }
+    if (values.prixUnitaire) {
+      textHTML += `<td>${articles[i].puht} </td>`;
+    }
+    textHTML += `
+          <td>  ${articles[i].tva} </td>  
+          <td>  ${articles[i].remise} </td> 
+          <td>  ${articles[i].ht} </td> 
+    </tr> 
+              `;
+  }
+  const renderHTML = `<div style="width:100%" >
+  <table class="table table-striped  table-responsive">
+      <thead class="thead-inverse" >
+      <tr>
+       ${textHTMLHeader} 
+      </tr>
+      </thead>
+      <tbody>
+      ${textHTML}
+      </tbody> 
+  </table>
+</div>`;
+  return renderHTML;
+}

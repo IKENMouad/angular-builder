@@ -29,8 +29,20 @@ unlayer.registerTool({
   values: {},
   renderer: {
     Viewer: unlayer.createViewer({
-      render(values) {
-        return `<div style="text-align:right" >
+      render: (values) => registerTotalPricesTool(values),
+    }),
+    exporters: {
+      web: (values) => registerTotalPricesTool(values),
+    },
+    head: {
+      css: function (values) {},
+      js: function (values) {},
+    },
+  },
+});
+
+function registerTotalPricesTool(values) {
+  return `<div style="text-align:right" >
                   TOTAL HT  &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;            ${values.ht}
                 </div> 
                 <br>
@@ -46,16 +58,4 @@ unlayer.registerTool({
                   Total TTC  &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;     ${values.ttc}
                 </div> 
      `;
-      },
-    }),
-    exporters: {
-      web: function (values) {
-        return ` web  `;
-      },
-    },
-    head: {
-      css: function (values) {},
-      js: function (values) {},
-    },
-  },
-});
+}

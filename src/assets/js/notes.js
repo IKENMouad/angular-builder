@@ -1,6 +1,6 @@
 unlayer.registerTool({
-  name: "label-prices",
-  label: "CardPrice",
+  name: "Notes",
+  label: "notes",
   icon: "fa-money-check",
   supportedDisplayModes: ["web", "email"],
   options: {},
@@ -20,11 +20,10 @@ unlayer.registerTool({
 });
 
 function registerLabelPriceTool(values) {
-  return `<div style="border-left: 6px solid grey; height: 45px;" >
+  return `<div style="border-left: 6px solid grey; height: 60px;" >
   <div style="margin-left:10px">
-    <span  style="color: #353333; font-size: 12px;" > Arreté le présent facture à la sommede:  </span>
-    <br>
-    <span> mille cinq cent soixante-douze Dirhams </span>
+    <span> Lorem ipsum dolor sit amet consectetur, adipisicing elit. Corrupti quis facilis ipsam quia consectetur, mollitia exercitationem quisquam pariatur excepturi incidunt. 
+     </span>
   </div>
 </div> 
 <br>
