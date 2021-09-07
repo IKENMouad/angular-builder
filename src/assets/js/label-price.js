@@ -1,7 +1,7 @@
 unlayer.registerTool({
   name: "label-prices",
   label: "CardPrice",
-  icon: "fa-table",
+  icon: "fa-money-check",
   supportedDisplayModes: ["web", "email"],
   options: {
     priceAndCondition: {

@@ -1,4 +1,10 @@
-import { Component, OnInit, Renderer2, ViewChild } from '@angular/core';
+import {
+  Component,
+  OnInit,
+  Renderer2,
+  TemplateRef,
+  ViewChild,
+} from '@angular/core';
 // import { EmailEditorComponent  } from 'angular-email-editor';
 
 @Component({
@@ -11,6 +17,17 @@ export class AppComponent implements OnInit {
 
   @ViewChild('emailEditor')
   emailEditor: any;
+
+  columnOptions = {
+    editor: {
+      data: {
+        options: [
+          { label: 'Afficher', value: 'Afficher' },
+          { label: 'Masquer', value: 'Masquer' },
+        ],
+      },
+    },
+  };
 
   constructor(private renderer: Renderer2) {}
 
@@ -35,7 +52,14 @@ export class AppComponent implements OnInit {
           autoSelectOnDrop: true,
         },
         tools: {
-          'custom#articles': {},
+          'custom#articles': {
+            properties: {
+              column1: this.columnOptions,
+              column2: this.columnOptions,
+              column3: this.columnOptions,
+              column4: this.columnOptions,
+            },
+          },
           'custom#total-prices': {},
           'custom#label-prices': {
             properties: {
@@ -61,12 +85,17 @@ export class AppComponent implements OnInit {
           },
         },
       });
+      window['unlayer'].setBodyValues({
+        contentWidth: '1000px', // or percent "50%"
+      });
     }
-    const editor1 = document.getElementsByTagName('IFRAME')[0];
-    this.renderer.setStyle(editor1, 'min-height', '48rem');
-
-    // load the design json here
-    // this.emailEditor.editor.loadDesign({});
+    let iframe = document.getElementsByTagName('IFRAME')[0];
+    this.renderer.setStyle(iframe, 'min-height', '48rem');
+    this.renderer.setStyle(
+      document.getElementById('#u_row_1'),
+      'background-color',
+      'red'
+    );
   }
 
   exportHtml() {

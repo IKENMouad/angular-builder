@@ -1,7 +1,7 @@
 unlayer.registerTool({
   name: "total-prices",
   label: "Price",
-  icon: "fa-table",
+  icon: "fa-dollar-sign",
   supportedDisplayModes: ["web", "email"],
   options: {
     text: {
@@ -34,13 +34,13 @@ unlayer.registerTool({
                   TOTAL HT  &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;            ${values.ht}
                 </div> 
                 <br>
-                <h1 style="text-align:right; float:right; border:1px solid black; width:8rem"> </h1>
+                <h1 style="text-align:right; float:right; border:1px solid gray; width:8rem"> </h1>
                 <br>
                 <div style="text-align:right" >
                   TVA   &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;    ${values.tva}
                 </div>
                 <br>
-                <h1 style="text-align:right; float:right; border:1px solid black; width:8rem"> </h1>
+                <h1 style="text-align:right; float:right; border:1px solid gray; width:8rem"> </h1>
                 <br>
                 <div style="text-align:right" >
                   Total TTC  &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;     ${values.ttc}
