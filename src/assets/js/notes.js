@@ -7,10 +7,10 @@ unlayer.registerTool({
   values: {},
   renderer: {
     Viewer: unlayer.createViewer({
-      render: (values) => registerLabelPriceTool(values),
+      render: (values) => registerLabelPriceTool(values, "view"),
     }),
     exporters: {
-      web: (values) => registerLabelPriceTool(values),
+      web: (values) => registerLabelPriceTool(values, "web"),
     },
     head: {
       css: function (values) {},
@@ -19,13 +19,21 @@ unlayer.registerTool({
   },
 });
 
-function registerLabelPriceTool(values) {
-  return `<div style="border-left: 6px solid grey; height: 60px;" >
-  <div style="margin-left:10px">
-    <span> Lorem ipsum dolor sit amet consectetur, adipisicing elit. Corrupti quis facilis ipsam quia consectetur, mollitia exercitationem quisquam pariatur excepturi incidunt. 
-     </span>
+function registerLabelPriceTool(values, renderer = "view") {
+  if (renderer === "view") {
+    return `<div style="border-left: 6px solid grey; height: 60px;" >
+    <div style="margin-left:10px">
+      <span> Lorem ipsum dolor sit amet consectetur, adipisicing elit. Corrupti quis facilis ipsam quia consectetur, mollitia exercitationem quisquam pariatur excepturi incidunt.
+       </span>
+    </div>
   </div>
-</div> 
-<br>
-`;
+  <br>
+  `;
+  } else {
+    return `{{if model.res.note != null}}
+    <div id='notices' style='page-break-inside: avoid!important;'>
+      <div class='notice'>{{model.res.note}}</div>
+    </div>
+    {{end}}`;
+  }
 }

@@ -1,0 +1,223 @@
+ .clearfix:after {
+  content: '';
+  display: table;
+  clear: both;
+}
+
+a {
+  color: transparent;
+  text-decoration: none;
+}
+
+#logo {
+  float: left;
+  margin-top: 8px;
+}
+
+#logo img {
+  height: 70px;
+}
+
+#company {
+  float: right;
+  text-align: right;
+}
+
+main {
+  height: 100%;
+  float: left;
+  width: 100%;
+}
+
+#details {
+  margin-bottom: 50px;
+  margin-top: 30px;
+  height: 100px
+}
+
+#client {
+  padding-left: 6px;
+  margin-right: 10px;
+  border-left: 6px solid transparent  ;
+  float: right;
+}
+
+#client .to {
+  color: #777777;
+}
+
+h2.name {
+  font-size: 1.4em;
+  font-weight: normal;
+  margin: 0;
+}
+
+#invoice {
+  float: left;
+  text-align: left;
+}
+
+#invoice h1 {
+  color:transparent;
+  font-size: 2.4em;
+  line-height: 1em;
+  font-weight: normal;
+  margin: 0 0 10px 0;
+}
+
+#invoice .date {
+  font-size: 1.1em;
+  color: #777777;
+}
+
+table {
+  width: 100%;
+  border-collapse: collapse;
+  border-spacing: 0;
+  margin-top: 30px;
+}
+
+
+table th,
+table td {
+  padding: 0px 10px;
+  background: #eeeeee;
+  text-align: center;
+  border-bottom: 1px solid #ffffff;
+  height: 35px
+}
+
+table th {
+  white-space: nowrap;
+  font-weight: normal;
+  font-weight: bold;
+}
+
+
+table td {
+  text-align: right;
+}
+
+table td h3 {
+  color: #57b223;
+  font-size: 1.2em;
+  font-weight: normal;
+}
+
+table .no {
+  color: #ffffff;
+  font-size: 1.6em;
+  background: #57b223;
+}
+
+table .desc {
+  text-align: left;
+}
+
+table .unit {
+  background: #dddddd;
+}
+
+
+table .total {
+  background:gray;
+  color: #ffffff;
+}
+
+table td.unit,
+table td.qty,
+table td.total {
+  font-size: 1.2em;
+}
+
+table tbody tr:last-child td {
+  border: none;
+}
+
+table.foot td {
+  padding: 10px 10px;
+  background: #ffffff;
+  border-bottom: none;
+  font-size: 1.2em;
+  white-space: nowrap;
+  border-top: 1px solid #aaaaaa;
+
+}
+
+table.foot tr:first-child td {
+  border-top: none;
+}
+
+
+table.foot tr:last-child td {
+  color: transparent;
+  font-size: 1.4em;
+  border-top: 1px solid transparent;
+}
+
+table.foot tr td:first-child {
+  border: none;
+}
+
+#thanks {
+  font-size: 2em;
+  margin-bottom: 50px;
+}
+
+.notices-container {
+  width: 100%;
+  position: absolute;
+  bottom: -190px;
+  margin-bottom: 20px;
+  page-break-inside: avoid !important;
+}
+
+
+#notices {
+  margin-top: 25px;
+  padding-left: 6px;
+
+  border-left: 6px solid transparent;
+}
+#notices2 {
+ padding-left: 6px;
+  border-left: 6px solid transparent;
+}
+
+#notices2 .notice {
+  font-size: 1.2em;
+  text-transform: capitalize;
+  page-break-inside: avoid !important;
+}
+
+#notices .notice {
+  font-size: 1.2em;
+  page-break-inside: avoid !important;
+}
+
+footer {
+  color: #777777;
+  width: 100%;
+  height: 30px;
+  position: absolute;
+  bottom: 0;
+  border-top: 1px solid #aaaaaa;
+  padding: 8px 0;
+  text-align: center;
+}
+
+thead {
+  display: table-header-group
+}
+
+tfoot {
+  display: table-row-group
+}
+
+tr {
+  page-break-inside: avoid !important
+}
+
+td {
+  page-break-inside: avoid !important
+}
