@@ -3,14 +3,38 @@ unlayer.registerTool({
   label: "CardPrice",
   icon: "fa-money-check",
   supportedDisplayModes: ["web", "email"],
-  options: {},
+  options: {
+    columns: {
+      title: "COLUMS",
+      options: {
+        weight: {
+          label: "border weight",
+          defaultValue: 6,
+          widget: "counter",
+        },
+        height: {
+          label: "border height",
+          defaultValue: 45,
+          widget: "counter",
+        },
+        color: {
+          label: "border color",
+          defaultValue: "#808080",
+          widget: "color_picker",
+        },
+      },
+    },
+  },
   values: {},
   renderer: {
     Viewer: unlayer.createViewer({
-      render: (values) => registerLabelPriceTool(values, "view"),
+      render: (values) => {
+        console.log("values :", values);
+        return registerLabelPriceToolView(values);
+      },
     }),
     exporters: {
-      web: (values) => registerLabelPriceTool(values, "web"),
+      web: (values) => registerLabelPriceToolWeb(values),
     },
     head: {
       css: function (values) {},
@@ -19,18 +43,19 @@ unlayer.registerTool({
   },
 });
 
-function registerLabelPriceTool(values, renderer) {
-  if (renderer === "view") {
-    return `<div style="border-left: 6px solid grey; height: 45px;" >
-    <div style="margin-left:10px">
-      <span  style="color: #353333; font-size: 12px;" > Arreté le présent facture à la sommede:  </span>
-      <br>
-      <span> mille cinq cent soixante-douze Dirhams </span>
-    </div>
+function registerLabelPriceToolView(values) {
+  return `<div style="border-left: ${values.weight}px solid ${values.color}; height: ${values.height}px;" >
+  <div style="margin-left:10px">
+    <span  style="color: #353333; font-size: 12px;" > Arreté le présent facture à la somme de :  </span>
+    <br>
+    <span> mille cinq cent soixante-douze Dirhams </span>
+  </div>
   </div>
   <br>`;
-  } else {
-    return `<div id='notices' style='page-break-inside: avoid!important;'>
+}
+
+function registerLabelPriceToolWeb(values) {
+  return `<div id='notices' style='page-break-inside: avoid!important;'>
               <div> Arrêté le présent facture à la somme de :</div>
               <div class='notice'>
                 {{ model.res.montant_ttc}}
@@ -44,5 +69,4 @@ function registerLabelPriceTool(values, renderer) {
                 {{end}}
               </div>
             </div>`;
-  }
 }

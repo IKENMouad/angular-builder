@@ -3,7 +3,28 @@ unlayer.registerTool({
   label: "Price",
   icon: "fa-dollar-sign",
   supportedDisplayModes: ["web", "email"],
-  options: {},
+  options: {
+    columns: {
+      title: "COLUMS",
+      options: {
+        weight: {
+          label: "border weight",
+          defaultValue: 6,
+          widget: "counter",
+        },
+        height: {
+          label: "border height",
+          defaultValue: 2,
+          widget: "counter",
+        },
+        color: {
+          label: "Total TTC color",
+          defaultValue: "#808080",
+          widget: "color_picker",
+        },
+      },
+    },
+  },
   values: {},
   renderer: {
     Viewer: unlayer.createViewer({
@@ -24,15 +45,15 @@ function registerTotalPricesToolView(values) {
                   TOTAL HT  &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;            1,310.00
                 </div>
                 <br>
-                <h1 style="text-align:right; float:right; border:1px solid gray; width:8rem"> </h1>
+                <h1 style="text-align:right; float:right; border-bottom:${values.height}px solid gray; width:${values.weight}rem"> </h1>
                 <br>
                 <div style="text-align:right" >
                   TVA   &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;     262.00
                 </div>
                 <br>
-                <h1 style="text-align:right; float:right; border:1px solid gray; width:8rem"> </h1>
+                <h1 style="text-align:right; float:right; border-bottom:${values.height}px solid ${values.color}; width:${values.weight}rem"> </h1>
                 <br>
-                <div style="text-align:right" >
+                <div style="text-align:right ;font-size: large;color:${values.color}" >
                   Total TTC  &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;     1,572.00
                 </div>
      `;
