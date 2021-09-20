@@ -32,16 +32,6 @@ unlayer.registerTool({
           defaultValue: 2,
           widget: "counter",
         },
-        // prixUnitaire: {
-        //   label: "Prix Unitaire",
-        //   defaultValue: false,
-        //   widget: "counter",
-        // },
-        // udm: {
-        //   label: "Unité de mesure",
-        //   defaultValue: false,
-        //   widget: "counter",
-        // },
       },
     },
   },
