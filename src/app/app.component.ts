@@ -52,15 +52,15 @@ export class AppComponent implements OnInit {
       },
       projectId: 1,
       customJS: [
-        'http://localhost:4300/assets/js/articles.js',
-        'http://localhost:4300/assets/js/total-prices.js',
-        'http://localhost:4300/assets/js/label-price.js',
-        'http://localhost:4300/assets/js/condition-paiement.js',
-        'http://localhost:4300/assets/js/notes.js',
-        'http://localhost:4300/assets/js/configue.js',
+        'http://localhost:4400/assets/js/articles.js',
+        'http://localhost:4400/assets/js/total-prices.js',
+        'http://localhost:4400/assets/js/label-price.js',
+        'http://localhost:4400/assets/js/condition-paiement.js',
+        'http://localhost:4400/assets/js/notes.js',
+        'http://localhost:4400/assets/js/configue.js',
       ],
       customCSS: [
-        'http://localhost:4300/assets/css/custom.css',
+        'http://localhost:4400/assets/css/custom.css',
         'https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css',
       ],
       tools: {

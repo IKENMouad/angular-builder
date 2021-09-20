@@ -1,5 +1,5 @@
- .clearfix:after {
-  content: '';
+.clearfix:after {
+  content: "";
   display: table;
   clear: both;
 }
@@ -32,13 +32,13 @@ main {
 #details {
   margin-bottom: 50px;
   margin-top: 30px;
-  height: 100px
+  height: 100px;
 }
 
 #client {
   padding-left: 6px;
   margin-right: 10px;
-  border-left: 6px solid transparent  ;
+  border-left: 6px solid transparent;
   float: right;
 }
 
@@ -58,7 +58,7 @@ h2.name {
 }
 
 #invoice h1 {
-  color:transparent;
+  color: transparent;
   font-size: 2.4em;
   line-height: 1em;
   font-weight: normal;
@@ -77,22 +77,21 @@ table {
   margin-top: 30px;
 }
 
-
 table th,
 table td {
   padding: 0px 10px;
-  background: #eeeeee;
+  /* background: red; */
+  border-top: none !important;
   text-align: center;
-  border-bottom: 1px solid #ffffff;
-  height: 35px
+  height: 35px;
 }
-
+table thead th {
+  border-bottom: none !important;
+}
 table th {
   white-space: nowrap;
-  font-weight: normal;
-  font-weight: bold;
+  font-weight: inherit;
 }
-
 
 table td {
   text-align: right;
@@ -118,9 +117,8 @@ table .unit {
   background: #dddddd;
 }
 
-
 table .total {
-  background:gray;
+  background: gray;
   color: #ffffff;
 }
 
@@ -130,8 +128,8 @@ table td.total {
   font-size: 1.2em;
 }
 
-table tbody tr:last-child td {
-  border: none;
+table tbody tr:last-child {
+  border: none !important;
 }
 
 table.foot td {
@@ -141,13 +139,11 @@ table.foot td {
   font-size: 1.2em;
   white-space: nowrap;
   border-top: 1px solid #aaaaaa;
-
 }
 
 table.foot tr:first-child td {
   border-top: none;
 }
-
 
 table.foot tr:last-child td {
   color: transparent;
@@ -172,7 +168,6 @@ table.foot tr td:first-child {
   page-break-inside: avoid !important;
 }
 
-
 #notices {
   margin-top: 25px;
   padding-left: 6px;
@@ -180,7 +175,7 @@ table.foot tr td:first-child {
   border-left: 6px solid transparent;
 }
 #notices2 {
- padding-left: 6px;
+  padding-left: 6px;
   border-left: 6px solid transparent;
 }
 
@@ -207,17 +202,17 @@ footer {
 }
 
 thead {
-  display: table-header-group
+  display: table-header-group;
 }
 
 tfoot {
-  display: table-row-group
+  display: table-row-group;
 }
 
 tr {
-  page-break-inside: avoid !important
+  page-break-inside: avoid !important;
 }
 
 td {
-  page-break-inside: avoid !important
+  page-break-inside: avoid !important;
 }

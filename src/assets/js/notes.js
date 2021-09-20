@@ -3,14 +3,35 @@ unlayer.registerTool({
   label: "notes",
   icon: "fa-money-check",
   supportedDisplayModes: ["web", "email"],
-  options: {},
+  options: {
+    columns: {
+      title: "COLUMS",
+      options: {
+        weight: {
+          label: "border weight",
+          defaultValue: 6,
+          widget: "counter",
+        },
+        height: {
+          label: "border height",
+          defaultValue: 60,
+          widget: "counter",
+        },
+        color: {
+          label: "border color",
+          defaultValue: "#808080",
+          widget: "color_picker",
+        },
+      },
+    },
+  },
   values: {},
   renderer: {
     Viewer: unlayer.createViewer({
-      render: (values) => registerLabelPriceTool(values, "view"),
+      render: (values) => registerLabelPriceToolView(values),
     }),
     exporters: {
-      web: (values) => registerLabelPriceTool(values, "web"),
+      web: (values) => registerLabelPriceToolWeb(values),
     },
     head: {
       css: function (values) {},
@@ -18,22 +39,20 @@ unlayer.registerTool({
     },
   },
 });
-
-function registerLabelPriceTool(values, renderer = "view") {
-  if (renderer === "view") {
-    return `<div style="border-left: 6px solid grey; height: 60px;" >
-    <div style="margin-left:10px">
-      <span> Lorem ipsum dolor sit amet consectetur, adipisicing elit. Corrupti quis facilis ipsam quia consectetur, mollitia exercitationem quisquam pariatur excepturi incidunt.
-       </span>
-    </div>
+function registerLabelPriceToolView(values) {
+  return `<div style="border-left: ${values.weight}px solid ${values.color}; height:  ${values.height}px;" >
+  <div style="margin-left:10px">
+    <span> Pretation livrée
+     </span>
   </div>
-  <br>
-  `;
-  } else {
-    return `{{if model.res.note != null}}
+</div>
+<br>
+`;
+}
+function registerLabelPriceToolWeb(values) {
+  return `{{if model.res.note != null}}
     <div id='notices' style='page-break-inside: avoid!important;'>
       <div class='notice'>{{model.res.note}}</div>
     </div>
     {{end}}`;
-  }
 }
