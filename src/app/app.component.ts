@@ -57,8 +57,7 @@ export class AppComponent implements OnInit {
         'http://localhost:4400/assets/js/label-price.js',
         'http://localhost:4400/assets/js/condition-paiement.js',
         'http://localhost:4400/assets/js/notes.js',
-        'http://localhost:4400/assets/js/configue.js',
-        'http://localhost:4400/assets/js/destinataire.js',
+        // 'http://localhost:4400/assets/js/destinataire.js',
         'http://localhost:4400/assets/js/adresse.js',
       ],
       customCSS: [

@@ -22,6 +22,19 @@ unlayer.registerTool({
           defaultValue: "#006FD6",
           widget: "color_picker",
         },
+        headerTextWeight: {
+          label: "test ",
+          defaultValue: "adress",
+          widget: "dropdown",
+          data: {
+            options: [
+              { label: "Adress", value: "adress" },
+              { label: "Destinataire", value: "destinataire" },
+              // { label: "Destinataire", value: "destinataire" },
+              // { label: "Destinataire", value: "destinataire" },
+            ],
+          },
+        },
       },
     },
   },
@@ -40,14 +53,23 @@ unlayer.registerTool({
   },
 });
 function registerCondtionPaiementToolView(values) {
-  return `<div style="border-left: ${values.weight}px solid ${values.color}; height:  ${values.height}px;" >
+  let textHtML = `<div style="border-left: ${values.weight}px solid ${values.color}; height:  ${values.height}px;" >
   <div style="margin-left:10px">
     <span  style="color: #353333; font-size: 12px;" > Conditions de paiement :  </span>
-    <br>
-    <span> Avance 60%  </span>
-  </div>
+     `;
+
+  if (values.headerTextWeight == "adress") {
+    textHtML += `<span> adress  </span> `;
+  }
+  if (values.headerTextWeight == "destinataire") {
+    textHtML += `<span> destinataire   </span>`;
+  }
+
+  textHtML += `</div>
 </div>
 <br>`;
+
+  return textHtML;
 }
 function registerCondtionPaiementToolWeb(values) {
   return `{{if model.param.is_visible_condition_paiement && model.res.condition_paiement != null }}
