@@ -1,0 +1,138 @@
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+.btn-container {
+  width: 100%;
+  height: 60px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+button {
+  --width: 180px;
+  --height: 60px;
+  border: 0;
+  position: relative;
+  min-width: 180px;
+  min-height: 60px;
+  border-radius: 60px;
+  color: #fff;
+  font-family: sans-serif;
+  font-weight: bold;
+  background: #0b5192;
+  cursor: pointer;
+  overflow: hidden;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin: 0 1rem;
+
+  .text,
+  .icon-container {
+    position: relative;
+    z-index: 2;
+  }
+
+  .icon-container {
+    --icon-size: 25px;
+    position: relative;
+    width: 25px;
+    height: 25px;
+    margin-left: 15px;
+    transition: transform 500ms ease;
+
+    .icon {
+      position: absolute;
+      left: 0;
+      top: 0;
+      width: 25px;
+      height: 25px;
+      transition: transform 500ms ease, opacity 250ms ease;
+
+      &--left {
+        transform: translateX(-200%);
+        opacity: 0;
+      }
+
+      svg {
+        width: 100%;
+        height: 100%;
+        fill: #fff;
+      }
+    }
+  }
+
+  &::after {
+    content: "";
+    position: absolute;
+    left: 0;
+    top: 0;
+    width: 100%;
+    height: 100%;
+    background: #006fd6;
+    border-radius: 60px;
+    z-index: 1;
+    transition: transform 500ms ease;
+  }
+
+  &:hover {
+    &::after {
+      transform: translateX(65%);
+    }
+
+    .icon-container {
+      transform: translateX(125%);
+      .icon {
+        &--left {
+          transform: translateX(0);
+          opacity: 1;
+        }
+        &--right {
+          transform: translateX(200%);
+          opacity: 0;
+        }
+      }
+    }
+  }
+}
+
+button:active {
+  &::after {
+    transform: translateX(50%);
+  }
+
+  .icon-container {
+    transform: translateX(100%);
+    .icon {
+      &--left {
+        transform: translateX(0);
+        opacity: 1;
+      }
+      &--right {
+        transform: translateX(150%);
+        opacity: 0;
+      }
+    }
+  }
+}
+.support {
+  position: absolute;
+  right: 10px;
+  bottom: 10px;
+  padding: 10px;
+  display: flex;
+  a {
+    margin: 0 10px;
+    color: #fff;
+    font-size: 1.8rem;
+    backface-visibility: hidden;
+    transition: all 150ms ease;
+    &:hover {
+      transform: scale(1.1);
+    }
+  }
+}

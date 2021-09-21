@@ -1,6 +1,6 @@
 unlayer.registerTool({
-  name: "notes",
-  label: "Notes",
+  name: "destinataire",
+  label: "Destinataire",
   icon: "fa-money-check",
   supportedDisplayModes: ["web", "email"],
   options: {
@@ -22,16 +22,20 @@ unlayer.registerTool({
           defaultValue: "#006FD6",
           widget: "color_picker",
         },
+        textColor: {
+          label: "text color",
+          widget: "color_picker",
+        },
       },
     },
   },
   values: {},
   renderer: {
     Viewer: unlayer.createViewer({
-      render: (values) => registerNotePriceToolView(values),
+      render: (values) => registerDestinatairePriceToolView(values),
     }),
     exporters: {
-      web: (values) => registerNotePriceToolWeb(values),
+      web: (values) => registerDestinatairePriceToolWeb(values),
     },
     head: {
       css: function (values) {},
@@ -39,17 +43,25 @@ unlayer.registerTool({
     },
   },
 });
-function registerNotePriceToolView(values) {
+function registerDestinatairePriceToolView(values) {
   return `<div style="border-left: ${values.weight}px solid ${values.color}; height:  ${values.height}px;" >
-  <div style="margin-left:10px">
-    <span> Pretation livrée
-     </span>
+   <div style="margin-left:10px;color:${values.textColor}">
+   <span  style="font-size: 12px;" > Destinataire :  </span>
+   <br>
+   <span style="font-size: 24px;"> Jawad  </span>
+   <span  style="font-size: 12px;" > LayounLayoun Maroc  </span>
+   <br>
+   <span  style="font-size: 12px;" > Code : 7 </span>
+   <br>
+   <span  style="font-size: 12px;" > ICE : 123456789012345 </span>
+   <br>
+   <span  style="color: #006FD6; font-size: 12px;" > cherkaouuijawad@gmail.com  </span>
+   </div>
   </div>
-</div>
 <br>
 `;
 }
-function registerNotePriceToolWeb(values) {
+function registerDestinatairePriceToolWeb(values) {
   return `{{if model.res.note != null}}
     <div id='notices' style='page-break-inside: avoid!important;'>
       <div class='notice'>{{model.res.note}}</div>

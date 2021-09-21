@@ -1,6 +1,6 @@
 unlayer.registerTool({
-  name: "notes",
-  label: "Notes",
+  name: "adresse",
+  label: "Adresse",
   icon: "fa-money-check",
   supportedDisplayModes: ["web", "email"],
   options: {
@@ -22,16 +22,20 @@ unlayer.registerTool({
           defaultValue: "#006FD6",
           widget: "color_picker",
         },
+        textColor: {
+          label: "text color",
+          widget: "color_picker",
+        },
       },
     },
   },
   values: {},
   renderer: {
     Viewer: unlayer.createViewer({
-      render: (values) => registerNotePriceToolView(values),
+      render: (values) => registerAdressePriceToolView(values),
     }),
     exporters: {
-      web: (values) => registerNotePriceToolWeb(values),
+      web: (values) => registerAdressePriceToolWeb(values),
     },
     head: {
       css: function (values) {},
@@ -39,17 +43,17 @@ unlayer.registerTool({
     },
   },
 });
-function registerNotePriceToolView(values) {
+function registerAdressePriceToolView(values) {
   return `<div style="border-left: ${values.weight}px solid ${values.color}; height:  ${values.height}px;" >
-  <div style="margin-left:10px">
-    <span> Pretation livrée
+  <div style="margin-left:10px;color:${values.textColor}">
+    <span> Adresse de Livraison :
      </span>
   </div>
 </div>
 <br>
 `;
 }
-function registerNotePriceToolWeb(values) {
+function registerAdressePriceToolWeb(values) {
   return `{{if model.res.note != null}}
     <div id='notices' style='page-break-inside: avoid!important;'>
       <div class='notice'>{{model.res.note}}</div>
