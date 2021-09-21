@@ -2,7 +2,7 @@ import { Component, OnInit, Renderer2 } from '@angular/core';
 @Component({
   selector: 'app-root',
   templateUrl: './app.component.html',
-  styleUrls: ['./app.component.css'],
+  styleUrls: ['./app.component.scss'],
 })
 export class AppComponent implements OnInit {
   title = 'angular-builder';
@@ -58,6 +58,8 @@ export class AppComponent implements OnInit {
         'http://localhost:4400/assets/js/condition-paiement.js',
         'http://localhost:4400/assets/js/notes.js',
         'http://localhost:4400/assets/js/configue.js',
+        'http://localhost:4400/assets/js/destinataire.js',
+        'http://localhost:4400/assets/js/adresse.js',
       ],
       customCSS: [
         'http://localhost:4400/assets/css/custom.css',
@@ -69,6 +71,8 @@ export class AppComponent implements OnInit {
         'custom#label-prices': {},
         'custom#condition-paiement': {},
         'custom#notes': {},
+        'custom#destinataire': {},
+        'custom#adresse': {},
         button: {
           enabled: false,
         },

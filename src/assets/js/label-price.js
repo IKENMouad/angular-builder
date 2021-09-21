@@ -19,7 +19,7 @@ unlayer.registerTool({
         },
         color: {
           label: "border color",
-          defaultValue: "#808080",
+          defaultValue: "#006FD6",
           widget: "color_picker",
         },
       },
