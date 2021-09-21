@@ -24,13 +24,76 @@ unlayer.registerTool({
         },
       },
     },
-    styles: {
-      title: "STYLES",
+    tableStyles: {
+      title: "TABLE GENERAL STYLES",
       options: {
+        tableBorderColor: {
+          label: "table border color",
+          widget: "color_picker",
+        },
+        tableBorder: {
+          label: "table border weight",
+          defaultValue: 0,
+          widget: "counter",
+        },
         height: {
-          label: "Height",
+          label: "rows separator height",
           defaultValue: 2,
           widget: "counter",
+        },
+        color: {
+          label: "rows separator color",
+          widget: "color_picker",
+        },
+        totalColor: {
+          label: "total background color",
+          widget: "color_picker",
+        },
+        totalTextColor: {
+          label: "total text color",
+          widget: "color_picker",
+        },
+      },
+    },
+    tableHeaderStyles: {
+      title: "TABLE HEADER STYLES",
+      options: {
+        headerColor: {
+          label: "header color",
+          widget: "color_picker",
+        },
+        headerTextColor: {
+          label: "header text color",
+          widget: "color_picker",
+        },
+        headerTextWeight: {
+          label: "header text weight",
+          defaultValue: "normal",
+          widget: "dropdown",
+          data: {
+            options: [
+              { label: "Normal", value: "normal" },
+              { label: "Bold", value: "bold" },
+            ],
+          },
+        },
+        headerTextSize: {
+          label: "header text size",
+          defaultValue: 14,
+          widget: "counter",
+        },
+      },
+    },
+    tableBodyStyles: {
+      title: "TABLE BODY STYLES",
+      options: {
+        tableColor: {
+          label: "table rows color",
+          widget: "color_picker",
+        },
+        tableTextColor: {
+          label: "table rows text color",
+          widget: "color_picker",
         },
       },
     },
@@ -54,6 +117,7 @@ unlayer.registerTool({
 });
 
 function registerArticlesToolView(values) {
+  console.log("inside rendring function article");
   let textHTML = "";
   let textHTMLHeader = "";
   let articles = [
@@ -77,43 +141,44 @@ function registerArticlesToolView(values) {
     },
   ];
 
-  textHTMLHeader += `<tr>`;
-  textHTMLHeader += `<th style="width: 60rem; text-align: left"> DESCRIPTION </th>`;
+  textHTMLHeader += `<tr style="border-bottom: ${values.height}px solid ${values.color} ;
+  background-color:${values.headerColor};color:${values.headerTextColor} ; font-weight:${values.headerTextWeight} ;font-size:${values.headerTextSize}px">`;
+  textHTMLHeader += `<th style="width: 60rem;text-align: left;"> DESCRIPTION </th>`;
   if (values.qnt) {
-    textHTMLHeader += `<th> QTE </th>`;
+    textHTMLHeader += `<th style=""> QTE </th>`;
   }
   if (values.prixUnitaire) {
-    textHTMLHeader += `<th> UDM </th>`;
+    textHTMLHeader += `<th style=""> UDM </th>`;
   }
   if (values.udm) {
-    textHTMLHeader += `<th style="width: 8rem"> PU HT </th>`;
+    textHTMLHeader += `<th style="width: 8rem;"> PU HT </th>`;
   }
-  textHTMLHeader += `<th style="width: 7rem"> REM % </th>`;
-  textHTMLHeader += `<th> TOTAL </th>`;
-  textHTMLHeader += `</th>`;
+  textHTMLHeader += `<th style="width: 7rem;"> REM % </th>`;
+  textHTMLHeader += `<th style="background:${values.totalColor};color:${values.totalTextColor}"> TOTAL </th>`;
+  textHTMLHeader += `</tr>`;
 
   for (let i = 0; i < articles.length; i++) {
-    textHTML += `<tr style="border: ${values.height}px solid black " >
-    <td style="text-align: left" > ${articles[i].description} </td> `;
+    textHTML += `<tr style=" border-bottom: ${values.height}px solid ${values.color} ;background-color:${values.tableColor};color:${values.tableTextColor} " >
+    <td style="text-align: left;" > ${articles[i].description} </td> `;
     if (values.qnt) {
-      textHTML += `<td>${articles[i].qte} </td>`;
+      textHTML += `<td style="">${articles[i].qte} </td>`;
     }
     if (values.udm) {
-      textHTML += `<td> ${articles[i].udm}</td>`;
+      textHTML += `<td style=""> ${articles[i].udm}</td>`;
     }
     if (values.prixUnitaire) {
-      textHTML += `<td >${articles[i].puht} </td>`;
+      textHTML += `<td style="">${articles[i].puht} </td>`;
     }
 
     textHTML += `
-    <td > ${articles[i].remise} </td>
-    <td> ${articles[i].total} </td>
+    <td style=""> ${articles[i].remise} </td>
+    <td style="background:${values.totalColor};color:${values.totalTextColor}"> ${articles[i].total} </td>
 </tr>
 `;
   }
 
-  const renderHTML = `<table class="table table-striped  table-responsive">
-  <thead class="thead-inverse">
+  const renderHTML = `<table style="border: ${values.tableBorder}px solid ${values.tableBorderColor};" class="table table-striped  table-responsive">
+  <thead class="thead-inverse" >
     ${textHTMLHeader}
   </thead>
   <tbody>
