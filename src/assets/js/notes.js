@@ -42,7 +42,7 @@ unlayer.registerTool({
 function registerNotePriceToolView(values) {
   return `<div style="border-left: ${values.weight}px solid ${values.color}; height:  ${values.height}px;" >
   <div style="margin-left:10px">
-    <span> Pretation livrée
+    <span> Presentation livrée
      </span>
   </div>
 </div>
