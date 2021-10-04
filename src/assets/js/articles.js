@@ -177,7 +177,7 @@ function registerArticlesToolView(values) {
 `;
   }
 
-  const renderHTML = `<table style="border: ${values.tableBorder}px solid ${values.tableBorderColor};" class="table table-striped  table-responsive">
+  const renderHTML = `<table style="display: table;border: ${values.tableBorder}px solid ${values.tableBorderColor};" class="table table-striped  table-responsive">
   <thead class="thead-inverse" >
     ${textHTMLHeader}
   </thead>

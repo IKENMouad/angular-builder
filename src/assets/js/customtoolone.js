@@ -1,6 +1,6 @@
 unlayer.registerTool({
-  name: "adresse",
-  label: "Adresse",
+  name: "costumtoolone",
+  label: "CostumToolone",
   icon: "fa-money-check",
   supportedDisplayModes: ["web", "email"],
   options: {
@@ -22,20 +22,16 @@ unlayer.registerTool({
           defaultValue: "#006FD6",
           widget: "color_picker",
         },
-        textColor: {
-          label: "text color",
-          widget: "color_picker",
-        },
       },
     },
   },
   values: {},
   renderer: {
     Viewer: unlayer.createViewer({
-      render: (values) => registerAdressePriceToolView(values),
+      render: (values) => registerNotePriceToolView(values),
     }),
     exporters: {
-      web: (values) => registerAdressePriceToolWeb(values),
+      web: (values) => registerNotePriceToolWeb(values),
     },
     head: {
       css: function (values) {},
@@ -43,17 +39,17 @@ unlayer.registerTool({
     },
   },
 });
-function registerAdressePriceToolView(values) {
+function registerNotePriceToolView(values) {
   return `<div style="border-left: ${values.weight}px solid ${values.color}; height:  ${values.height}px;" >
-  <div style="margin-left:10px;color:${values.textColor}">
-    <span> Adresse de Livraison :
+  <div style="margin-left:10px">
+    <span> Pretation livrée
      </span>
   </div>
 </div>
 <br>
 `;
 }
-function registerAdressePriceToolWeb(values) {
+function registerNotePriceToolWeb(values) {
   return `{{if model.res.note != null}}
     <div id='notices' style='page-break-inside: avoid!important;'>
       <div class='notice'>{{model.res.note}}</div>
