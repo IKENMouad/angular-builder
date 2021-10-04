@@ -22,6 +22,11 @@ unlayer.registerTool({
           defaultValue: "#006FD6",
           widget: "color_picker",
         },
+        textColor: {
+          label: "text color",
+          defaultValue: "#555555",
+          widget: "color_picker",
+        },
       },
     },
   },
@@ -41,13 +46,13 @@ unlayer.registerTool({
 });
 
 function registerTotalPricesToolView(values) {
-  return `<div style="text-align:right" >
+  return `<div style="text-align:right ;color:${values.textColor}" >
                   TOTAL HT  &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;            1,310.00
                 </div>
                 <br>
-                <h1 style="text-align:right; float:right; border-bottom:${values.height}px solid gray; width:${values.weight}rem"> </h1>
+                <h1 style="text-align:right; float:right; border-bottom:${values.height}px solid ${values.textColor}; width:${values.weight}rem"> </h1>
                 <br>
-                <div style="text-align:right" >
+                <div style="text-align:right;color:${values.textColor}" >
                   TVA   &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;     262.00
                 </div>
                 <br>

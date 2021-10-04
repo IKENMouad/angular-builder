@@ -3,13 +3,28 @@
     #emailEditor
     id="editor-wrapper"
     projectId="1234"
-    (loaded)="editorLoaded($event)"
+    (loaded)="loadData($event)"
   ></div>
 </div>
 
 <div class="btn-container">
   <button (click)="exportHtml()">
     <span class="text">Export</span>
+    <div class="icon-container">
+      <div class="icon icon--left">
+        <svg>
+          <use xlink:href="#arrow-right"></use>
+        </svg>
+      </div>
+      <div class="icon icon--right">
+        <svg>
+          <use xlink:href="#arrow-right"></use>
+        </svg>
+      </div>
+    </div>
+  </button>
+  <button (click)="change()">
+    <span class="text">Toggel</span>
     <div class="icon-container">
       <div class="icon icon--left">
         <svg>
